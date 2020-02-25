@@ -16,9 +16,9 @@ public class Car
     Info = info;
   }
 
-  public bool WorthBuying(int maxPrice)
+  public bool WorthBuying(int maxPrice, int maxMilage)
   {
-    return (Price < maxPrice);
+    return (Price < maxPrice && Miles < maxMilage);
   }
 }
 
@@ -37,21 +37,33 @@ public class Program
     string stringMaxPrice = Console.ReadLine();
     int maxPrice = int.Parse(stringMaxPrice);
 
+    Console.WriteLine("Enter maximum milage: ");
+    string stringmaxMilage = Console.ReadLine();
+    int maxMilage = int.Parse(stringmaxMilage);
+
     List<Car> CarsMatchingSearch = new List<Car>(0);
 
     foreach (Car automobile in Cars)
     {
-      if (automobile.WorthBuying(maxPrice))
+      if (automobile.WorthBuying(maxPrice, maxMilage))
       {
         CarsMatchingSearch.Add(automobile);
       }
     }
 
-    foreach(Car automobile in CarsMatchingSearch)
+    if (CarsMatchingSearch.Count > 0)
     {
-      Console.WriteLine(automobile.MakeModel);
-      Console.WriteLine(automobile.Info);
-      Console.WriteLine("Miles: " + automobile.Miles); 
+      foreach(Car automobile in CarsMatchingSearch)
+      {
+        Console.WriteLine(CarsMatchingSearch.Count);
+        Console.WriteLine(automobile.MakeModel);
+        Console.WriteLine(automobile.Info);
+        Console.WriteLine("Miles: " + automobile.Miles);
+      }
     }
+    else 
+      {
+        Console.WriteLine("Sorry! No cars match your search.");
+      }
   }
 }
