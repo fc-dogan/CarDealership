@@ -1,0 +1,18 @@
+@using Dealership.Models;
+
+<h1> Car List <h1>
+<ul>
+@if (Model.Count == 0)
+{
+  <p> There are no cars in the list </p>
+}
+</ul>
+<ul>
+  @foreach (Car car in Model)
+  {
+    <li>Model: @car.MakeModel</li>
+    <li>Price:  @car.Price</li>
+    <li>Miles: @car.Miles</li>
+    <li>Info: @car.Info</li>
+  }
+</ul>
